@@ -1,0 +1,49 @@
+{
+  "name": "study-diary",
+  "version": "1.0.0",
+  "description": "study-diary",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "dev": "webpack serve",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kis0421/study-diary.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kis0421/study-diary/issues"
+  },
+  "homepage": "https://github.com/kis0421/study-diary#readme",
+  "dependencies": {
+    "mobx": "^6.3.7",
+    "mobx-react": "^7.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
+    "@webpack-cli/generators": "^2.4.1",
+    "autoprefixer": "^10.4.0",
+    "css-loader": "^6.5.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.4",
+    "postcss": "^8.3.11",
+    "postcss-loader": "^6.2.0",
+    "prettier": "^2.4.1",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.4",
+    "webpack": "^5.62.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
+  }
+}
