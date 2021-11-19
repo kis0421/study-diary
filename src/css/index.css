@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+}
+
+.app > section {
+    flex: 1;
+    overflow: auto;
+}
