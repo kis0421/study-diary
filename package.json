@@ -23,6 +23,11 @@
   },
   "homepage": "https://github.com/kis0421/study-diary#readme",
   "dependencies": {
+    "@emotion/react": "^11.6.0",
+    "@emotion/styled": "^11.6.0",
+    "@mui/core": "^5.0.0-alpha.54",
+    "@mui/icons-material": "^5.1.1",
+    "@mui/material": "^5.1.1",
     "mobx": "^6.3.7",
     "mobx-react": "^7.2.1",
     "react": "^17.0.2",
