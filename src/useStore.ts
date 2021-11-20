@@ -1,5 +1,5 @@
-import { diary } from "./stores/diary"
+import { tab } from "./stores/tab"
 
-const useStore = () => ({ diary });
+const useStore = () => ({ tab });
 
 export default useStore;
