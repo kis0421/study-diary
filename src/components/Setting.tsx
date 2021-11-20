@@ -29,7 +29,7 @@ const Setting = () => {
       { title: "버전정보", icon: <InfoIcon />, onClick: () => console.log("공지사항") },
     ],
     [
-      { title: "C공유하기", icon: <ShareIcon />, onClick: () => console.log("") },
+      { title: "공유하기", icon: <ShareIcon />, onClick: () => console.log("") },
       { title: "친구관리", icon: <PeopleIcon />, onClick: () => console.log("") },
       { title: "다이어리 꾸미기", icon: <CleaningIcon />, onClick: () => console.log("") },
       { title: "통계", icon: <EqualizerIcon />, onClick: () => console.log("") },
