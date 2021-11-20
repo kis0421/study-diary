@@ -1,8 +1,8 @@
 import { observable } from "mobx"
 
 export const tab = observable({
-    currentTab: 2,
-    setCurrentTab(tab: number) {
+    currentTab: "",
+    setCurrentTab(tab: "" | "write" | "setting") {
         this.currentTab = tab
     },
 })
