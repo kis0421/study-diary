@@ -1,16 +1,16 @@
 import React, { useEffect } from "react"
-import { isRegisterdSiteId } from "../utils/graphqlBuilder"
+import { checkIsRegisterdSiteId } from "../utils/graphqlBuilder"
 
 
 const Main = () => {
-
+  
   useEffect(() => {
-    
+
   }, [])
 
   const check = async () => {
-
-    await isRegisterdSiteId("kimminkyud");
+    const isRegisterdSiteId = await checkIsRegisterdSiteId("kimminkyud");
+    console.log(isRegisterdSiteId);
   }
   return (
     <section style={{ position: "fixed", width: "100%", height: "100%" }}>

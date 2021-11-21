@@ -25,7 +25,7 @@ const requestBuilder = async ({ method, query, variables }: RequestBuilder) => {
   return data;
 }
 
-export const isRegisterdSiteId = async (siteId: string) => {
+export const checkIsRegisterdSiteId = async (siteId: string) => {
   const { data } = await requestBuilder({
     method: "POST",
     query: `query isRegisterdSiteId($siteId: String) {
@@ -37,6 +37,6 @@ export const isRegisterdSiteId = async (siteId: string) => {
       siteId
     }
   });
-  console.log(data)
+  
   return data.siteInfo.length ? true : false;
 }
