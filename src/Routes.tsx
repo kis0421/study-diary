@@ -1,10 +1,11 @@
 import React from "react";
-import { Routes as Switch, Route, useLocation } from "react-router-dom"
+import { Routes as Switch, Route, useLocation } from "react-router-dom";
 
-import NavigationMenu from "./components/NavigationMenu"
+import NavigationMenu from "./components/NavigationMenu";
 
-import Setting from "./components/Setting"
-import Main from "./components/Main"
+import Setting from "./components/Setting";
+import Write from "./components/Write";
+import Main from "./components/Main";
 
 const Routes = () => {
   const location = useLocation();
@@ -16,7 +17,7 @@ const Routes = () => {
         : <>
           <Switch>
             <Route path={`/`} element={<>메인</>} />
-            <Route path={`/write`} element={<>gggg</>} />
+            <Route path={`/write`} element={<Write />} />
             <Route path={`/setting`} element={<Setting />} />
           </Switch>
           <NavigationMenu />
