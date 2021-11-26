@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, Rating } from "@mui/material";
+import { TextField, Rating, Switch, FormControlLabel } from "@mui/material";
 
 
 const Write = () => {
@@ -16,6 +16,15 @@ const Write = () => {
       multiline
       rows={8}
       defaultValue="내용을 작성해주세요" />
+
+    <TextField
+      label="태그"
+      style={{ width: "100%", marginBottom: "12px" }}
+      defaultValue="개발,GC,메모리"
+    />
+    <div style={{ textAlign: "right" }}>
+      <FormControlLabel control={<Switch />} label="공개" />
+    </div>
 
     <Rating
       size="large"
