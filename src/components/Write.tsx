@@ -1,8 +1,10 @@
 import React from "react";
 import { TextField, Rating, Switch, FormControlLabel } from "@mui/material";
-
+import { useParams} from "react-router-dom"
 
 const Write = () => {
+  const params = useParams();
+  console.log(params)
   return (<div style={{ padding: "16px" }}>
     <TextField
       label="링크"

@@ -8,7 +8,6 @@ import Write from "./components/Write";
 import Main from "./components/Main";
 
 const Routes = () => {
-  const location = useLocation();
   // TODO: 페이지 key 값에 따른 default router prefix 추가해야함
   return (
     <section>
@@ -16,9 +15,9 @@ const Routes = () => {
         ? <Main />
         : <>
           <Switch>
-            <Route path={`/`} element={<>메인</>} />
-            <Route path={`/write`} element={<Write />} />
-            <Route path={`/setting`} element={<Setting />} />
+            <Route path={`/:siteId`} element={<>메인</>} />
+            <Route path={`/:siteId/write`} element={<Write />} />
+            <Route path={`/:siteId/setting`} element={<Setting />} />
           </Switch>
           <NavigationMenu />
         </>}

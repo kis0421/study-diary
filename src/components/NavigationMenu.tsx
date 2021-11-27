@@ -8,9 +8,9 @@ import { Tabs, Tab, } from "@mui/material"
 import useStore from "../useStore";
 
 const NavigationMenu = () => {
-  const { tab } = useStore();
+  const { tab, siteInfo } = useStore();
   const navigate = useNavigate();
-
+  console.log(siteInfo);
   return useObserver(() =>
     <Tabs
       style={{ position: "fixed", width: "100%", bottom: 0 }}
