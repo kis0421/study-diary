@@ -9,11 +9,10 @@ import Main from "./components/Main";
 
 const Routes = () => {
   const location = useLocation();
-  console.log(location.pathname)
   // TODO: 페이지 key 값에 따른 default router prefix 추가해야함
   return (
     <section>
-      {location.pathname === "/"
+      {window.location.hash === ""
         ? <Main />
         : <>
           <Switch>
