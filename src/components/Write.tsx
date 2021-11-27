@@ -16,7 +16,9 @@ const Write = () => {
       multiline
       rows={8}
       defaultValue="내용을 작성해주세요" />
-    // TODO: 태그는 text가 아니라 iconButton으로 변경해야함
+    {
+      // TODO: 태그는 text가 아니라 iconButton으로 변경해야함
+    }
     <TextField
       label="태그"
       style={{ width: "100%", marginBottom: "12px" }}
@@ -25,7 +27,7 @@ const Write = () => {
     <div style={{ textAlign: "right" }}>
       <FormControlLabel control={<Switch />} label="공개" />
     </div>
-     
+
     <Rating
       size="large"
       style={{ float: "right" }}
