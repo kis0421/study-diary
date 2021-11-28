@@ -1,6 +1,6 @@
 import React from "react";
-import { TextField, Rating, Switch, FormControlLabel } from "@mui/material";
-import { useParams} from "react-router-dom"
+import { TextField, Rating, Switch, FormControlLabel, Button } from "@mui/material";
+import { useParams } from "react-router-dom"
 
 const Write = () => {
   const params = useParams();
@@ -30,11 +30,16 @@ const Write = () => {
       <FormControlLabel control={<Switch />} label="공개" />
     </div>
 
-    <Rating
-      size="large"
-      style={{ float: "right" }}
-      defaultValue={2.5}
-      precision={0.5} />
+    <div style={{ overflowY: "auto" }}>
+      <Rating
+        size="large"
+        style={{ float: "right" }}
+        defaultValue={2.5}
+        precision={0.5} />
+    </div>
+    <div style={{ textAlign: "center", marginTop: "12px" }}>
+      <Button variant="contained">작성</Button>
+    </div>
   </div>)
 }
 
