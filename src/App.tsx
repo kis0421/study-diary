@@ -1,11 +1,8 @@
 import React from "react";
 import { HashRouter } from "react-router-dom"
-import useStore from "./useStore"
 
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import Routes from "./Routes"
-import NavigationMenu from "./components/NavigationMenu";
-import Setting from "./components/Setting";
 
 const theme = createTheme({
   palette: {
