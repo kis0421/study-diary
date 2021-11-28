@@ -1,6 +1,6 @@
 
 import React from "react";
-import { useObserver } from "mobx-react"
+import { observer } from "mobx-react-lite";
 
 import { ListItemButton, ListItemIcon, ListItemText, List, Divider } from "@mui/material"
 import {
@@ -39,7 +39,7 @@ const Setting = () => {
       { title: "고객센터 / 도움말", icon: <HelpIcon /> }
     ]
   ];
-  return useObserver(() => (
+  return (
     <List>
       {menuGroups.map((menus, menusIndex) =>
         <div key={menusIndex}>
@@ -55,7 +55,7 @@ const Setting = () => {
         </div>
       )}
     </List>
-  ))
+  )
 }
 
-export default Setting
+export default observer(Setting)
