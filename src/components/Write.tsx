@@ -49,7 +49,10 @@ const Write = () => {
           <InputAdornment position="start" >
             {Array.from(writeDiary.writeForm.keywords).map((keyword: string) => (
               <span key={keyword}>
-                <Button variant="outlined" style={{ marginRight: "4px" }}>{keyword}</Button>
+                <Button
+                  variant="outlined"
+                  style={{ marginRight: "4px" }}
+                  onClick={() => writeDiary.deleteKeyword(keyword)}>{keyword}</Button>
               </span>
             ))}
           </InputAdornment>
