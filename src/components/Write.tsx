@@ -1,19 +1,23 @@
 import React from "react";
 import { TextField, Rating, Switch, FormControlLabel, Button } from "@mui/material";
 import { useParams } from "react-router-dom"
+import useStore from "../useStore";
 
 const Write = () => {
   const params = useParams();
-  console.log(params)
+  const { writeDiary } = useStore();
+
   return (<div style={{ padding: "16px" }}>
     <TextField
       label="링크"
+      name="link"
       style={{ width: "100%", marginBottom: "12px" }}
       defaultValue="http://naver.com"
     />
 
     <TextField
       label="내용"
+      name="contents"
       style={{ width: "100%", marginBottom: "12px" }}
       multiline
       rows={8}
