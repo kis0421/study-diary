@@ -1,10 +1,13 @@
 import { observable } from "mobx"
 
 const writeDiary = observable({
-    currenSiteId: undefined,
-    setCurrentId(id: string){
-        this.currenSiteId = id;
-    },
+  writeForm: {
+    link: "",
+    contents: "",
+  },
+  changeHandle(name: string, value: any) {
+    this.writeForm[name] = value;
+  },
 })
 
 export default writeDiary

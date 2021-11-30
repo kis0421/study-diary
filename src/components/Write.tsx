@@ -1,6 +1,7 @@
 import React from "react";
 import { TextField, Rating, Switch, FormControlLabel, Button } from "@mui/material";
 import { useParams } from "react-router-dom"
+import { observer } from "mobx-react-lite";
 import useStore from "../useStore";
 
 const Write = () => {
@@ -12,8 +13,8 @@ const Write = () => {
       label="링크"
       name="link"
       style={{ width: "100%", marginBottom: "12px" }}
-      defaultValue="http://naver.com"
-    />
+      value={writeDiary.writeForm["link"]}
+      onChange={(e) => writeDiary.changeHandle(e.target.name, e.target.value)} />
 
     <TextField
       label="내용"
@@ -21,7 +22,8 @@ const Write = () => {
       style={{ width: "100%", marginBottom: "12px" }}
       multiline
       rows={8}
-      defaultValue="내용을 작성해주세요" />
+      value={writeDiary.writeForm["contents"]}
+      onChange={(e) => writeDiary.changeHandle(e.target.name, e.target.value)} />
     {
       // TODO: 태그는 text가 아니라 iconButton으로 변경해야함
     }
@@ -47,4 +49,4 @@ const Write = () => {
   </div>)
 }
 
-export default Write;
+export default observer(Write);
