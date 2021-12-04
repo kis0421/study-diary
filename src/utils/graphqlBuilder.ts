@@ -37,6 +37,7 @@ export const checkIsRegisterdSiteId = async (siteId: string) => {
       siteId
     }
   });
+  return Boolean(data.siteInfo.length);
 }
 
 export const insertDiaryOne = async (writeData: {
