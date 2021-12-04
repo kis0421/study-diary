@@ -37,6 +37,29 @@ export const checkIsRegisterdSiteId = async (siteId: string) => {
       siteId
     }
   });
-  
-  return data.siteInfo.length ? true : false;
+}
+
+export const insertDiaryOne = async (writeData: {
+  siteIdx: number
+  userId: number,
+  link: string,
+  content: string,
+  keywords: string
+}) => {
+  await requestBuilder({
+    method: "POST",
+    query: `mutation MyMutation($object: diary_insert_input!) {
+        insert_diary_one(object: $object){
+          siteIdx,
+          userId,
+          link,
+          content,
+          keywords,
+        }
+      }`,
+    variables: {
+      "object": writeData
+    }
+  });
+
 }
