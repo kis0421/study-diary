@@ -14,6 +14,7 @@ const Routes = () => {
   
   useEffect(() => {
     (async () => {
+      // TODO: siteIdFromLocationHref 구하는 방식에 사이드이펙트가 있는지 고려
       const siteIdFromLocationHref = window.location.href.split("/#/")?.[1].split("/")?.[0] || "";
       const isRegisterdSiteId = await checkIsRegisterdSiteId(siteIdFromLocationHref);
       if (isRegisterdSiteId) {
