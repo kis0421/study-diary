@@ -1,15 +1,7 @@
-# 🚀 Welcome to your new awesome project!
+# 🚀 study-diary
 
-This project has been created using **webpack-cli**, you can now run
+hi. 
+this is my toy project. 
 
-```
-npm run build
-```
+will write soon
 
-or
-
-```
-yarn build
-```
-
-to bundle your application
