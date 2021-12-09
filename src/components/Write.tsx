@@ -21,7 +21,7 @@ const Write = () => {
   const { writeDiary } = useStore();
 
 
-
+  { // TODO:  TextField는 map으로 하는게 괜찮으려나 }
   return (<div style={{ padding: "16px" }}>
     <TextField
       label="링크"

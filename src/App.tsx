@@ -2,6 +2,7 @@ import React from "react";
 import { HashRouter } from "react-router-dom"
 
 import { ThemeProvider, createTheme } from "@mui/material/styles"
+import { Provider as StoreProvider } from "./context/storeContext"
 import Routes from "./Routes"
 
 const theme = createTheme({
@@ -23,7 +24,9 @@ export default () => {
   return <>
     <HashRouter>
       <ThemeProvider theme={theme}>
-        <App />
+        <StoreProvider>
+          <App />
+        </StoreProvider>
       </ThemeProvider>
     </HashRouter>
   </>
