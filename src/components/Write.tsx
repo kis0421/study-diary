@@ -4,9 +4,11 @@ import { makeStyles } from "@mui/styles";
 
 import { useParams } from "react-router-dom"
 import { observer } from "mobx-react-lite";
-import useStore from "../useStore";
-import StoreContext from "../context/StoreContext"
 
+import StoreContext from "../context/StoreContext";
+import UIContext from "../context/UIContext";
+
+import { insertDiaryOne } from "../utils/graphqlBuilder"
 const useStyles = makeStyles({
   focused: {
     "& legend": {
@@ -20,9 +22,24 @@ const Write = () => {
   const classes = useStyles();
   const params = useParams();
   const { writeDiary, siteInfo } = useContext(StoreContext);
+  const { alert } = useContext(UIContext);
 
-  const submitDiary = () => {
+  const submitDiary = async () => {
+    console.log(siteInfo.currentSiteInfo);
+    console.log(writeDiary.writeForm);
+    // FIXME: 마지막 , 추가되는거 없애야함
+    const keywordString = [...Array.from(writeDiary.writeForm.keywords), writeDiary.writeForm.keywordString].join(",");
 
+    await insertDiaryOne({
+      content: writeDiary.writeForm.content,
+      link: writeDiary.writeForm.link,
+      siteIdx: siteInfo.currentSiteInfo.idx,
+      userId: 1,
+      keywords: keywordString || null,
+    })
+    alert({
+      message: "작성 완료"
+    })
   };
 
   return (<div style={{ padding: "16px" }}>
@@ -69,6 +86,7 @@ const Write = () => {
         }
       }}
       onChange={(e) => e.target.value !== "," && writeDiary.handleChange(e.target.name, e.target.value)} />
+    {/* TODO: DB에 관련 컬럼 추가부터 해야함
     <div style={{ textAlign: "right" }}>
       <FormControlLabel control={<Switch />} label="공개" />
     </div>
@@ -79,11 +97,13 @@ const Write = () => {
         style={{ float: "right" }}
         defaultValue={2.5}
         precision={0.5} />
-    </div>
+    </div> 
+    */}
     <div style={{ textAlign: "center", marginTop: "12px" }}>
-      <Button variant="contained" onClick={() => submitDiary()}>작성</Button>
+      <Button variant="contained" onClick={async () => await submitDiary()}>작성</Button>
     </div>
   </div >)
 }
 
 export default observer(Write);
+observer
