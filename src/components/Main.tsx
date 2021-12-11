@@ -1,15 +1,15 @@
 import React, { useEffect } from "react"
-import { checkIsRegisterdSiteId } from "../utils/graphqlBuilder"
+import { getSiteInfo } from "../utils/graphqlBuilder"
 
 
 const Main = () => {
-  
+
   useEffect(() => {
 
   }, [])
 
   const check = async () => {
-    const isRegisterdSiteId = await checkIsRegisterdSiteId("kimminkyud");
+    const isRegisterdSiteId = await getSiteInfo("kimminkyud");
     console.log(isRegisterdSiteId);
   }
   return (

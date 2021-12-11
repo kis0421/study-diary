@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Routes as Switch, Route } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import useStore from "./useStore";
-import { checkIsRegisterdSiteId } from "./utils/graphqlBuilder"
+import { getSiteInfo } from "./utils/graphqlBuilder"
 
 import NavigationMenu from "./components/NavigationMenu";
 import Setting from "./components/Setting";
@@ -11,12 +11,12 @@ import Main from "./components/Main";
 
 const Routes = () => {
   const { siteInfo } = useStore();
-  
+
   useEffect(() => {
     (async () => {
       // TODO: siteIdFromLocationHref 구하는 방식에 사이드이펙트가 있는지 고려
       const siteIdFromLocationHref = window.location.href.split("/#/")?.[1].split("/")?.[0] || "";
-      const isRegisterdSiteId = await checkIsRegisterdSiteId(siteIdFromLocationHref);
+      const isRegisterdSiteId = await getSiteInfo(siteIdFromLocationHref);
       if (isRegisterdSiteId) {
         siteInfo.setCurrentId(siteIdFromLocationHref);
       }

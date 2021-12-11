@@ -1,5 +1,5 @@
 import axios from "axios";
-// TODO: graphql request를 axios 하나만 사용하는게 맞나 ?
+// TODO: graphql request를 axios 하나만 사용하는게 맞나 ?d
 
 const endPoint = "https://study-diary.hasura.app/v1/graphql";
 const secretKey = process?.env?.REACT_APP_SECRETKEY || "";
@@ -25,11 +25,13 @@ const requestBuilder = async ({ method, query, variables }: RequestBuilder) => {
   return data;
 }
 
-export const checkIsRegisterdSiteId = async (siteId: string) => {
+export const getSiteInfo = async (siteId: string) => {
   const { data } = await requestBuilder({
     method: "POST",
     query: `query isRegisterdSiteId($siteId: String) {
       siteInfo(where: {siteId: {_eq: $siteId}}) {
+        idx,
+        siteName,
         siteId
       }
     }`,
