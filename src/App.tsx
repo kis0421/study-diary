@@ -2,7 +2,7 @@ import React from "react";
 import { HashRouter } from "react-router-dom"
 
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { Provider as StoreProvider } from "./context/storeContext"
+import { Provider as StoreProvider } from "./context/StoreContext"
 import Routes from "./Routes"
 
 const theme = createTheme({
