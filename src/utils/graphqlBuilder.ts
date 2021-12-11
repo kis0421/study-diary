@@ -4,7 +4,7 @@ import axios from "axios";
 const endPoint = "https://study-diary.hasura.app/v1/graphql";
 const secretKey = process?.env?.REACT_APP_SECRETKEY || "";
 
-type RequestBuilder = {
+interface RequestBuilder {
   method: "POST" | "GET";
   query: string,
   variables: object
@@ -39,7 +39,7 @@ export const getSiteInfo = async (siteId: string) => {
       siteId
     }
   });
-  return Boolean(data.siteInfo.length);
+  return data.siteInfo;
 }
 
 export const insertDiaryOne = async (writeData: {
