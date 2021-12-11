@@ -53,6 +53,8 @@ export function Provider(props: { children: ReactNode }) {
     return (
       universalUI.info.open &&
       <Dialog
+        fullWidth
+        maxWidth={"lg"}
         open={universalUI.info.open}
         onClose={() => universalUI.setUIInfo({ open: false })}>
         <DialogTitle id="alert-dialog-title">{universalUI.info.title || "알림"}</DialogTitle>
