@@ -3,7 +3,7 @@ import { observable } from "mobx"
 const writeDiary = observable({
   writeForm: {
     link: "",
-    contents: "",
+    content: "",
     keywordString: "",
     keywords: new Set()
   },

@@ -19,10 +19,10 @@ const useStyles = makeStyles({
 const Write = () => {
   const classes = useStyles();
   const params = useParams();
-  const { writeDiary } = useContext(StoreContext);
+  const { writeDiary, siteInfo } = useContext(StoreContext);
 
   const submitDiary = () => {
-    console.log(writeDiary.writeForm["link"])
+
   };
 
   return (<div style={{ padding: "16px" }}>
@@ -35,11 +35,11 @@ const Write = () => {
 
     <TextField
       label="내용"
-      name="contents"
+      name="content"
       style={{ width: "100%", marginBottom: "12px" }}
       multiline
       rows={8}
-      value={writeDiary.writeForm["contents"]}
+      value={writeDiary.writeForm["content"]}
       onChange={(e) => writeDiary.handleChange(e.target.name, e.target.value)} />
 
     <TextField
