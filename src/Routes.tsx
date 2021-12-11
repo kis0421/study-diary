@@ -19,7 +19,7 @@ const Routes = () => {
       const currentSiteInfo = await getSiteInfo(siteIdFromLocationHref);
 
       if (currentSiteInfo.length) {
-        siteInfo.setCurrenSiteInfo(currentSiteInfo[0]);
+        siteInfo.setCurrentSiteInfo(currentSiteInfo[0]);
       }
     })()
 

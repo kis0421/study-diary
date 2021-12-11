@@ -3,8 +3,16 @@ import useStore from "../useStore";
 
 interface Value {
   siteInfo: {
-    currenSiteInfo: any;
-    setCurrenSiteInfo(id: string): void;
+    currentSiteInfo?: {
+      idx: number;
+      siteId: string;
+      siteName: string;
+    };
+    setCurrentSiteInfo: (siteInfo: {
+      idx: number;
+      siteId: string;
+      siteName: string;
+    }) => void;
   },
   tab: {
     currentTab: string;
