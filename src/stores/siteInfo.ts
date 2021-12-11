@@ -2,8 +2,8 @@ import { observable } from "mobx"
 
 const siteInfo = observable({
     currenSiteInfo: undefined,
-    setCurrenSiteInfo(id: string) {
-        this.currenSiteId = id;
+    setCurrenSiteInfo(siteInfo: any) {
+        this.currenSiteInfo = siteInfo;
     },
 })
 
