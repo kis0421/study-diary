@@ -16,13 +16,14 @@ const Routes = () => {
     (async () => {
       // TODO: siteIdFromLocationHref 구하는 방식에 사이드이펙트가 있는지 고려
       const siteIdFromLocationHref = window.location.href.split("/#/")?.[1].split("/")?.[0] || "";
-      const isRegisterdSiteId = await getSiteInfo(siteIdFromLocationHref);
-      if (isRegisterdSiteId) {
-        siteInfo.setCurrentId(siteIdFromLocationHref);
+      const currentSiteInfo = await getSiteInfo(siteIdFromLocationHref);
+
+      if (currentSiteInfo.length) {
+        siteInfo.setCurrenSiteInfo(siteIdFromLocationHref);
       }
     })()
 
-  }, [siteInfo.currenSiteId]);
+  }, [siteInfo.currenSiteInfo]);
 
   return (
     <section>

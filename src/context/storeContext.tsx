@@ -1,9 +1,10 @@
 import React, { createContext, ReactNode } from "react";
 import useStore from "../useStore";
+
 interface Value {
   siteInfo: {
-    currenSiteId: any;
-    setCurrentId(id: string): void;
+    currenSiteInfo: any;
+    setCurrenSiteInfo(id: string): void;
   },
   tab: {
     currentTab: string;
@@ -12,7 +13,7 @@ interface Value {
   writeDiary: {
     writeForm: {
       link: string;
-      contents: string;
+      content: string;
       keywordString: string;
       keywords: Set<unknown>;
     };
