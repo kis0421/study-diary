@@ -1,8 +1,6 @@
 import React, { createContext, ReactNode } from "react";
 import useStore from "../useStore";
 interface Value {
-  // export value Interface
-  // any type 타이핑 필요
   siteInfo: {
     currenSiteId: any;
     setCurrentId(id: string): void;

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { TextField, Rating, Switch, FormControlLabel, Button, InputAdornment } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 import { useParams } from "react-router-dom"
 import { observer } from "mobx-react-lite";
 import useStore from "../useStore";
+import StoreContext from "../context/StoreContext"
 
 const useStyles = makeStyles({
   focused: {
@@ -18,10 +19,12 @@ const useStyles = makeStyles({
 const Write = () => {
   const classes = useStyles();
   const params = useParams();
-  const { writeDiary } = useStore();
+  const { writeDiary } = useContext(StoreContext);
 
+  const submitDiary = () => {
+    console.log(writeDiary.writeForm["link"])
+  };
 
-  { // TODO:  TextField는 map으로 하는게 괜찮으려나 }
   return (<div style={{ padding: "16px" }}>
     <TextField
       label="링크"
@@ -78,7 +81,7 @@ const Write = () => {
         precision={0.5} />
     </div>
     <div style={{ textAlign: "center", marginTop: "12px" }}>
-      <Button variant="contained">작성</Button>
+      <Button variant="contained" onClick={() => submitDiary()}>작성</Button>
     </div>
   </div >)
 }
