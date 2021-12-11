@@ -8,8 +8,7 @@ interface UIInfo {
   action?: () => void;
 }
 
-
-const userInterfaceInfo = observable<{ info: UIInfo, setUIInfo: (info: any) => void }>({
+const userInterfaceInfo = observable({
   info: {
     open: false,
     title: undefined,
@@ -17,8 +16,8 @@ const userInterfaceInfo = observable<{ info: UIInfo, setUIInfo: (info: any) => v
     message: undefined,
     action: undefined
   },
-  setUIInfo: (info) => {
-    console.log(info);
+  setUIInfo(info: UIInfo) {
+    this.info = info
   },
 })
 
