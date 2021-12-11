@@ -6,8 +6,14 @@
     "module": "es6",
     "target": "es5",
     "allowJs": true,
-    "lib": ["esnext", "dom"],
-    "jsx" : "react"
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "jsx": "react",
+    "resolveJsonModule": true
   },
-  "files": ["src/index.tsx"]
+  "files": [
+    "src/index.tsx"
+  ]
 }
