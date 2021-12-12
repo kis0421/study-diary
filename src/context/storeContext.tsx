@@ -14,6 +14,28 @@ interface Value {
       siteName: string;
     }) => void;
   },
+  diaryInfo: {
+    diaryList?: Array<{
+      idx: number;
+      siteIdx: number;
+      userId: number;
+      keywords?: string;
+      link?: string;
+      registerDate?: string;
+      modifyDate?: string;
+      content?: string;
+    }>,
+    setDiaryList: (diaryList: Array<{
+      idx: number;
+      siteIdx: number;
+      userId: number;
+      keywords?: string;
+      link?: string;
+      registerDate?: string;
+      modifyDate?: string;
+      content?: string;
+    }>) => void
+  }
   tab: {
     currentTab: string;
     setCurrentTab(tab: "" | "write" | "setting"): void;
@@ -36,12 +58,13 @@ interface Value {
 const context = createContext<Value>({} as any);
 export default context;
 export function Provider(props: { children: ReactNode }) {
-  const { siteInfo, tab, writeDiary } = useStore();
+  const { siteInfo, tab, writeDiary, diaryInfo } = useStore();
   return <context.Provider
     value={{
       siteInfo,
       tab,
       writeDiary,
+      diaryInfo,
       log: (data) => global.console.log(data),
     }}>
     {props.children}
