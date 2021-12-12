@@ -7,8 +7,11 @@ interface UIInfo {
   message?: string | React.ReactElement;
   action?: () => void;
 }
-
-const userInterfaceInfo = observable({
+export interface UIInfoInterface {
+  info: UIInfo,
+  setUIInfo: (info: UIInfo) => void
+}
+const userInterfaceInfo = observable(<UIInfoInterface>{
   info: {
     open: false,
     title: undefined,
@@ -16,7 +19,7 @@ const userInterfaceInfo = observable({
     message: undefined,
     action: undefined
   },
-  setUIInfo(info: UIInfo) {
+  setUIInfo(info) {
     this.info = info
   },
 })

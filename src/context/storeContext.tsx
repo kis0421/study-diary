@@ -1,57 +1,17 @@
 import React, { createContext, ReactNode } from "react";
 import useStore from "../useStore";
 
+import { tabInterface } from "../stores/tab";
+import { siteInfoInterface } from "../stores/siteInfo";
+import { writeDiaryInterface } from "../stores/writeDiary";
+import { diaryInfoInterFace } from "../stores/diaryInfo"
+
+
 interface Value {
-  siteInfo: {
-    currentSiteInfo?: {
-      idx: number;
-      siteId: string;
-      siteName: string;
-    };
-    setCurrentSiteInfo: (siteInfo: {
-      idx: number;
-      siteId: string;
-      siteName: string;
-    }) => void;
-  },
-  diaryInfo: {
-    diaryList?: Array<{
-      idx: number;
-      siteIdx: number;
-      userId: number;
-      keywords?: string;
-      link?: string;
-      registerDate?: string;
-      modifyDate?: string;
-      content?: string;
-    }>,
-    setDiaryList: (diaryList: Array<{
-      idx: number;
-      siteIdx: number;
-      userId: number;
-      keywords?: string;
-      link?: string;
-      registerDate?: string;
-      modifyDate?: string;
-      content?: string;
-    }>) => void
-  }
-  tab: {
-    currentTab: string;
-    setCurrentTab(tab: "" | "write" | "setting"): void;
-  },
-  writeDiary: {
-    writeForm: {
-      title: string;
-      link: string;
-      content: string;
-      keywordString: string;
-      keywords: Set<unknown>;
-    };
-    addKeyword(keyword: string): void;
-    deleteKeyword(keyword: string): void;
-    handleChange(name: string, value: any): void;
-  },
+  siteInfo: siteInfoInterface,
+  diaryInfo: diaryInfoInterFace
+  tab: tabInterface,
+  writeDiary: writeDiaryInterface,
   log: (data: any) => void;
 }
 

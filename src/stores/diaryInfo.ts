@@ -1,6 +1,6 @@
 import { observable } from "mobx"
 
-interface diaryInterFace {
+interface diaryInterface {
   idx: number;
   siteIdx: number;
   userId: number;
@@ -10,17 +10,14 @@ interface diaryInterFace {
   modifyDate?: string;
   content?: string;
 }
-
-interface diaryInfoInterFace {
-  list: diaryInterFace[]
+export interface diaryInfoInterFace {
+  diaryList: diaryInterface[]
+  setDiaryList: (diaryList: diaryInterface[]) => void
 }
 
-const diaryList = observable<{
-  diaryList?: diaryInfoInterFace["list"],
-  setDiaryList: (diaryList: diaryInfoInterFace["list"]) => void
-}>({
-  diaryList: undefined,
-  setDiaryList(diaryList: diaryInfoInterFace["list"]) {
+const diaryList = observable<diaryInfoInterFace>({
+  diaryList: [],
+  setDiaryList(diaryList) {
     this.diaryList = diaryList;
   },
 })

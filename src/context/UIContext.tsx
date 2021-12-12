@@ -24,14 +24,6 @@ interface Value {
   }) => void;
 }
 
-interface State {
-  open: boolean;
-  type?: "alert" | "confirm";
-  title?: string | React.ReactElement;
-  message?: string | React.ReactElement;
-  action?: () => void;
-}
-
 const context = createContext<Value>({} as any);
 export default context;
 export function Provider(props: { children: ReactNode }) {
