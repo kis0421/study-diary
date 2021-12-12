@@ -10,6 +10,7 @@ import NavigationMenu from "./components/NavigationMenu";
 import Setting from "./components/Setting";
 import Write from "./components/Write";
 import Main from "./components/Main";
+import SiteDiary from "./components/SiteDiary";
 
 const Routes = () => {
   const { siteInfo } = useContext(StoreContext);
@@ -35,17 +36,14 @@ const Routes = () => {
     <section>
       {window.location.hash === ""
         ? <Main />
-        : <>
-          <Switch>
-            <Route path={`:siteId`} element={<NavigationMenu />}>
-              <Route path={`home`} element={<>home</>} />
-              <Route path={`write`} element={<Write />} />
-              <Route path={`setting`} element={<Setting />} />
-            </Route>
-            <Route path={`/*`} element={<>페이지를 찾을 수 없습니다.</>} />
-          </Switch>
-
-        </>}
+        : <Switch>
+          <Route path={`:siteId`} element={<NavigationMenu />}>
+            <Route path={""} element={<SiteDiary />} />
+            <Route path={`write`} element={<Write />} />
+            <Route path={`setting`} element={<Setting />} />
+          </Route>
+          <Route path={`/*`} element={<>페이지를 찾을 수 없습니다.</>} />
+        </Switch>}
     </section>)
 }
 export default observer(Routes);
