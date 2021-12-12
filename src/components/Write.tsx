@@ -106,4 +106,3 @@ const Write = () => {
 }
 
 export default observer(Write);
-observer
