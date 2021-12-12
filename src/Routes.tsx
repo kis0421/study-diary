@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Routes as Switch, Route } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import useStore from "./useStore";
 import { getSiteInfo } from "./utils/graphqlBuilder"
+
+import StoreContext from "./context/StoreContext";
 
 import NavigationMenu from "./components/NavigationMenu";
 import Setting from "./components/Setting";
@@ -10,7 +11,7 @@ import Write from "./components/Write";
 import Main from "./components/Main";
 
 const Routes = () => {
-  const { siteInfo } = useStore();
+  const { siteInfo } = useContext(StoreContext);
 
   useEffect(() => {
     (async () => {
@@ -20,6 +21,8 @@ const Routes = () => {
 
       if (currentSiteInfo.length) {
         siteInfo.setCurrentSiteInfo(currentSiteInfo[0]);
+      } else {
+
       }
     })()
 
