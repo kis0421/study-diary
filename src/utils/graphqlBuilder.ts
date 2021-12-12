@@ -43,6 +43,7 @@ export const getSiteInfo = async (siteId: string) => {
 }
 
 export const insertDiaryOne = async (writeData: {
+  title: string,
   siteIdx: number
   userId: number,
   link: string,
@@ -53,6 +54,7 @@ export const insertDiaryOne = async (writeData: {
     method: "POST",
     query: `mutation MyMutation($object: diary_insert_input!) {
         insert_diary_one(object: $object){
+          title,
           siteIdx,
           userId,
           link,
@@ -61,8 +63,7 @@ export const insertDiaryOne = async (writeData: {
         }
       }`,
     variables: {
-      "object": writeData
+      object: writeData
     }
   });
-
 }

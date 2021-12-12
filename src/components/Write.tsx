@@ -31,6 +31,7 @@ const Write = () => {
     const keywordString = [...Array.from(writeDiary.writeForm.keywords), writeDiary.writeForm.keywordString].join(",");
 
     await insertDiaryOne({
+      title: writeDiary.writeForm.title,
       content: writeDiary.writeForm.content,
       link: writeDiary.writeForm.link,
       siteIdx: siteInfo.currentSiteInfo.idx,
@@ -43,6 +44,13 @@ const Write = () => {
   };
 
   return (<div style={{ padding: "16px" }}>
+    <TextField
+      label="제목"
+      name="title"
+      style={{ width: "100%", marginBottom: "12px" }}
+      value={writeDiary.writeForm["title"]}
+      onChange={(e) => writeDiary.handleChange(e.target.name, e.target.value)} />
+
     <TextField
       label="링크"
       name="link"

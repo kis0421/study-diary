@@ -20,6 +20,7 @@ interface Value {
   },
   writeDiary: {
     writeForm: {
+      title: string;
       link: string;
       content: string;
       keywordString: string;
