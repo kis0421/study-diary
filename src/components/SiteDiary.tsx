@@ -18,7 +18,7 @@ const SiteDiary = () => {
     }
 
   }, [siteInfo.currentSiteInfo])
-  console.log(diaryInfo.diaryList)
+
   return (<>
     <section style={{ position: "fixed", width: "100%", height: "calc(100% - 48px)", padding: "8px" }}>
       <header style={{ fontWeight: "bold", fontSize: "1.5em", marginBottom: "8px" }}>{siteInfo.currentSiteInfo?.siteName}</header>
