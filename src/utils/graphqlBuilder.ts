@@ -85,3 +85,27 @@ export const getDiaryList = async (siteIdx: number) => {
   });
   return data.diary;
 }
+
+export const getDiaryDetail = async (siteIdx: number, idx: number) => {
+  const { data } = await requestBuilder({
+    method: "POST",
+    query: `query getDiaryList($siteIdx: Int, $idx: Int) {
+      diary(where: {siteIdx: {_eq: $siteIdx}, idx: {_eq: $idx}}) {
+        idx,
+        siteIdx,
+        userId,
+        keywords,
+        link,
+        registerDate,
+        modifyDate,
+        title,
+        content
+      }
+    }`,
+    variables: {
+      siteIdx,
+      idx,
+    }
+  });
+  return data.diary;
+}
