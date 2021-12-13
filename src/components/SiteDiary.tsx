@@ -1,4 +1,6 @@
-import React, { useEffect, useContext } from "react"
+import React, { useEffect, useContext } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import { observer } from "mobx-react-lite";
 import { Backdrop, CircularProgress, Paper } from "@mui/material"
 
@@ -8,6 +10,8 @@ import StoreContext from "../context/StoreContext";
 
 const SiteDiary = () => {
   const { siteInfo, diaryInfo } = useContext(StoreContext);
+  const navigate = useNavigate();
+  const pathName = (useLocation()).pathname;
 
   useEffect(() => {
     if (siteInfo.currentSiteInfo) {
@@ -41,6 +45,7 @@ const SiteDiary = () => {
               marginRight: index % 2 === 0 ? "22px" : "0",
             }}>
             <Paper
+              onClick={() => navigate(`${pathName}${i.idx}`)}
               style={{
                 minHeight: "250px",
                 marginBottom: "8px",
@@ -48,7 +53,7 @@ const SiteDiary = () => {
                 padding: "6px",
                 fontSize: "0.75em"
               }}
-              elevation={3}>{i.link}</Paper>
+              elevation={3}>{i.content}</Paper>
             <div style={{ marginBottom: "42px", textAlign: "center" }}>
               <div>{i.title}</div>
               <div style={{ fontSize: "0.8em", color: "#999" }}>{i.registerDate.substring(0, 10)}</div>
