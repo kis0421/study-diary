@@ -12,15 +12,21 @@ interface diaryInterface {
   content?: string;
 }
 export interface diaryInfoInterFace {
-  diaryList?: diaryInterface[]
+  diaryList?: diaryInterface[];
+  diaryDetail?: diaryInterface;
   setDiaryList: (diaryList: diaryInterface[]) => void
+  setDiaryDetail: (diary: diaryInterface) => void
 }
 
 const diaryList = observable<diaryInfoInterFace>({
   diaryList: undefined,
+  diaryDetail: undefined,
   setDiaryList(diaryList) {
     this.diaryList = diaryList;
   },
+  setDiaryDetail(diary) {
+    this.diaryDetail = diary
+  }
 })
 
 export default diaryList
