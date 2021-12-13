@@ -11,6 +11,7 @@ import Setting from "./components/Setting";
 import Write from "./components/Write";
 import Main from "./components/Main";
 import SiteDiary from "./components/SiteDiary";
+import SiteDiaryView from "./components/SiteDiaryView";
 
 const Routes = () => {
   const { siteInfo } = useContext(StoreContext);
@@ -37,12 +38,13 @@ const Routes = () => {
       {window.location.hash === ""
         ? <Main />
         : <Switch>
-          <Route path={`:siteId`} element={<NavigationMenu />}>
+          <Route path={":siteId"} element={<NavigationMenu />}>
             <Route path={""} element={<SiteDiary />} />
-            <Route path={`write`} element={<Write />} />
-            <Route path={`setting`} element={<Setting />} />
+            <Route path={":diaryIdx"} element={<SiteDiaryView />} />
+            <Route path={"write"} element={<Write />} />
+            <Route path={"setting"} element={<Setting />} />
           </Route>
-          <Route path={`/*`} element={<>페이지를 찾을 수 없습니다.</>} />
+          <Route path={"/*"} element={<>페이지를 찾을 수 없습니다.</>} />
         </Switch>}
     </section>)
 }
