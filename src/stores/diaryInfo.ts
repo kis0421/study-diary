@@ -8,15 +8,16 @@ interface diaryInterface {
   link?: string;
   registerDate?: string;
   modifyDate?: string;
+  title?: string;
   content?: string;
 }
 export interface diaryInfoInterFace {
-  diaryList: diaryInterface[]
+  diaryList?: diaryInterface[]
   setDiaryList: (diaryList: diaryInterface[]) => void
 }
 
 const diaryList = observable<diaryInfoInterFace>({
-  diaryList: [],
+  diaryList: undefined,
   setDiaryList(diaryList) {
     this.diaryList = diaryList;
   },
