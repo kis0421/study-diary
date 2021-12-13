@@ -75,8 +75,7 @@ export const getDiaryList = async (siteIdx: number) => {
       diary(where: {siteIdx: {_eq: $siteIdx}}) {
         idx,
         title,
-        link,
-        keywords
+        content,
         registerDate,
       }
     }`,
