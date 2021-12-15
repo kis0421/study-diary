@@ -32,6 +32,7 @@ const SiteDiary = () => {
       </Backdrop>
       : <section style={{ position: "fixed", width: "100%", height: "calc(100% - 48px)", padding: "8px" }}>
         <header style={{
+          textAlign:"center",
           fontWeight: "bold",
           fontSize: "1.5em",
           paddingBottom: "8px",
