@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react"
 import { useNavigate, useParams, Link } from "react-router-dom"
 import { observer } from "mobx-react-lite";
-import { Backdrop, CircularProgress, Paper } from "@mui/material"
+import { Backdrop, CircularProgress, Button } from "@mui/material"
 
 import { getDiaryDetail } from "../utils/graphqlBuilder"
 import StoreContext from "../context/StoreContext";
@@ -10,6 +10,7 @@ import StoreContext from "../context/StoreContext";
 const SiteDiaryView = () => {
   const { siteInfo, diaryInfo } = useContext(StoreContext);
   const { diaryIdx } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (siteInfo.currentSiteInfo) {
@@ -29,15 +30,19 @@ const SiteDiaryView = () => {
       </Backdrop>
       : <section style={{ position: "fixed", width: "100%", height: "calc(100% - 48px)", padding: "8px" }}>
         <header style={{
+          textAlign: "center",
           fontWeight: "bold",
           fontSize: "1.5em",
           paddingBottom: "8px",
           marginBottom: "4px",
           borderBottom: "1px solid #efefef"
-        }}>{diaryInfo.diaryDetail?.title}</header>
+        }}>
+          <span>{diaryInfo.diaryDetail?.title}</span>
+          <Button style={{ position: "absolute", left: "0" }}>뒤로</Button>
+        </header>
         <article style={{
           height: "calc(100vh - 98px)",
-          overflowY: "auto"
+          wordBreak: "break-all"
         }}>
           <div style={{ marginBottom: "8px" }}>
             <Link
