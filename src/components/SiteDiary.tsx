@@ -12,7 +12,7 @@ const SiteDiary = () => {
   const { siteInfo, diaryInfo } = useContext(StoreContext);
   const navigate = useNavigate();
   const pathName = (useLocation()).pathname;
-
+  
   useEffect(() => {
     if (siteInfo.currentSiteInfo) {
       (async () => {
@@ -51,7 +51,7 @@ const SiteDiary = () => {
                 marginRight: index % 2 === 0 ? "22px" : "0",
               }}>
               <Paper
-                onClick={() => navigate(`${pathName}${i.idx}`)}
+                onClick={() => navigate(`${pathName}${pathName[pathName.length - 1] !== "/" ? "/" : ""}${i.idx}`)}
                 style={{
                   minHeight: "250px",
                   marginBottom: "8px",
