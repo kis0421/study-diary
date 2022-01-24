@@ -30,7 +30,7 @@ const SiteDiary = () => {
         open={siteInfo.currentSiteInfo === undefined || diaryInfo.diaryList === undefined}>
         <CircularProgress color="inherit" />
       </Backdrop>
-      : <section style={{ position: "fixed", width: "100%", height: "calc(100% - 48px)", padding: "8px" }}>
+      : <section style={{ position: "fixed", width: "calc(100% - 16px)", height: "calc(100% - 64px)", padding: "8px" }}>
         <header style={{
           textAlign:"center",
           fontWeight: "bold",
