@@ -39,7 +39,8 @@ const SiteDiary = () => {
           borderBottom: "1px solid #efefef"
         }}>{siteInfo.currentSiteInfo?.siteName}</header>
         <article style={{
-          height: "calc(100vh - 98px)",
+          height: "calc(100vh - 106px)",
+          paddingTop: "8px",
           overflowY: "auto"
         }}>
           {(diaryInfo?.diaryList || []).map((i, index) => (
@@ -48,8 +49,10 @@ const SiteDiary = () => {
               style={{
                 float: "left",
                 display: "inline-block",
-                width: "calc(50% - 18px)",
-                marginRight: index % 2 === 0 ? "22px" : "0",
+                width: "calc(50% - 12px)",
+                marginRight: index % 2 === 0 ? "20px" : "0",
+                marginLeft: index % 2 === 0 ? "2px" : "0"
+                ,
               }}>
               <Paper
                 onClick={() => navigate(`${pathName}${pathName[pathName.length - 1] !== "/" ? "/" : ""}${i.idx}`)}
