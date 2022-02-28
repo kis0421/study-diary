@@ -30,9 +30,6 @@ export function Provider(props: { children: ReactNode }) {
   const { universalUI } = useStore();
 
   const closeDialog = () => {
-    if (universalUI.info.action) {
-      universalUI.info.action();
-    }
     universalUI.setUIInfo({
       open: false,
       type: undefined,
@@ -57,7 +54,12 @@ export function Provider(props: { children: ReactNode }) {
         </DialogContent>
         <DialogActions>
           {universalUI.info.type === "confirm" && <>
-            <Button onClick={closeDialog} color="primary">확인</Button>
+            <Button onClick={() => {
+              if (universalUI.info.action) {
+                universalUI.info.action();
+              }
+              closeDialog()
+            }} color="primary">확인</Button>
             <Button onClick={closeDialog} color="primary">취소</Button>
           </>}
           {universalUI.info.type === "alert" && <>
