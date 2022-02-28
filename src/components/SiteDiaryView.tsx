@@ -11,7 +11,7 @@ const SiteDiaryView = () => {
   const { siteInfo, diaryInfo } = useContext(StoreContext);
   const { diaryIdx } = useParams();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (siteInfo.currentSiteInfo) {
       (async () => {
@@ -37,10 +37,12 @@ const SiteDiaryView = () => {
           marginBottom: "4px",
           borderBottom: "1px solid #efefef"
         }}>
-          <span>{diaryInfo.diaryDetail?.title}</span>
           <Button
             onClick={() => navigate(`/${siteInfo.currentSiteInfo.siteId}/`)}
             style={{ position: "absolute", left: "0" }}>뒤로</Button>
+          <span>{diaryInfo.diaryDetail?.title}</span>
+          <Button
+            style={{ position: "absolute", right: "0" }}>삭제</Button>
         </header>
         <article style={{
           height: "calc(100vh - 98px)",
