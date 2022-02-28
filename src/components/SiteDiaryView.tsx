@@ -4,11 +4,14 @@ import { observer } from "mobx-react-lite";
 import { Backdrop, CircularProgress, Button } from "@mui/material"
 
 import { getDiaryDetail } from "../utils/graphqlBuilder"
+import UIContext from "../context/UIContext";
 import StoreContext from "../context/StoreContext";
 
 
 const SiteDiaryView = () => {
   const { siteInfo, diaryInfo } = useContext(StoreContext);
+  const { confirm } = useContext(UIContext);
+
   const { diaryIdx } = useParams();
   const navigate = useNavigate();
 
@@ -42,6 +45,7 @@ const SiteDiaryView = () => {
             style={{ position: "absolute", left: "0" }}>뒤로</Button>
           <span>{diaryInfo.diaryDetail?.title}</span>
           <Button
+            onClick={() => confirm({ title: "알림", message: "삭제 하시겠습니까?"})}
             style={{ position: "absolute", right: "0" }}>삭제</Button>
         </header>
         <article style={{
