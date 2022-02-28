@@ -12,8 +12,8 @@ import useStore from "../useStore";
 
 interface Value {
   confirm: ({ title, message, action }: {
-    title: string | React.ReactElement,
     message: string | React.ReactElement,
+    title?: string | React.ReactElement,
     action?: () => void;
   }) => void;
 
