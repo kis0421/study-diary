@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Provider as StoreProvider } from "./context/StoreContext";
@@ -24,7 +24,7 @@ const App = () => {
 
 export default () => {
   return <>
-    <HashRouter>
+    <BrowserRouter>
       <ThemeProvider theme={theme}>
         <UIProvider>
           <StoreProvider>
@@ -32,6 +32,6 @@ export default () => {
           </StoreProvider>
         </UIProvider>
       </ThemeProvider>
-    </HashRouter>
+    </BrowserRouter>
   </>
 };
