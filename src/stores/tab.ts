@@ -6,9 +6,8 @@ export interface tabInterface {
   setCurrentTab: (tab: tabType) => void
 
 }
-// TODO: currentTab 초기화 하는 과정 개선 필요
 const tab = observable(<tabInterface>{
-  currentTab: window.location.pathname.split("/")?.[1].split("/")?.[1] || "",
+  currentTab: window.location.pathname.split("/")[2] || "",
   setCurrentTab(tab: tabType) {
     this.currentTab = tab
   },

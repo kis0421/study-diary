@@ -11,7 +11,7 @@ const NavigationMenu = () => {
   const { tab, siteInfo } = useStore();
   const param = useParams();
   const navigate = useNavigate();
-
+  
   return (<>
     <Tabs
       style={{ position: "fixed", width: "100%", borderTop: "1px solid #efefef", bottom: 0 }}
