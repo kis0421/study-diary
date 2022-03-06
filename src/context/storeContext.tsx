@@ -1,17 +1,17 @@
 import React, { createContext, ReactNode } from "react";
 import useStore from "../useStore";
 
-import { tabInterface } from "../stores/tab";
-import { siteInfoInterface } from "../stores/siteInfo";
-import { writeDiaryInterface } from "../stores/writeDiary";
-import { diaryInfoInterFace } from "../stores/diaryInfo"
+import { TabInterface } from "../stores/tab";
+import { SiteInfoInterface } from "../stores/siteInfo";
+import { WriteDiaryInterface } from "../stores/writeDiary";
+import { DiaryInfoInterFace } from "../stores/diaryInfo"
 
 
 interface Value {
-  siteInfo: siteInfoInterface,
-  diaryInfo: diaryInfoInterFace
-  tab: tabInterface,
-  writeDiary: writeDiaryInterface,
+  siteInfo: SiteInfoInterface,
+  diaryInfo: DiaryInfoInterFace
+  tab: TabInterface,
+  writeDiary: WriteDiaryInterface,
   log: (data: any) => void;
 }
 
