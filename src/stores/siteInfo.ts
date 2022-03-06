@@ -1,15 +1,15 @@
 import { observable } from "mobx"
-interface currentSiteInfoInterface {
+interface CurrentSiteInfoInterface {
   idx: number;
   siteId: string;
   siteName: string;
 }
-export interface siteInfoInterface {
-  currentSiteInfo?: currentSiteInfoInterface
-  setCurrentSiteInfo: (siteInfo: currentSiteInfoInterface) => void
+export interface SiteInfoInterface {
+  currentSiteInfo?: CurrentSiteInfoInterface
+  setCurrentSiteInfo: (siteInfo: CurrentSiteInfoInterface) => void
 }
 
-const siteInfo = observable<siteInfoInterface>({
+const siteInfo = observable<SiteInfoInterface>({
   currentSiteInfo: undefined,
   setCurrentSiteInfo(siteInfo) {
     this.currentSiteInfo = siteInfo;

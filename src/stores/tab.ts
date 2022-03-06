@@ -1,14 +1,14 @@
 import { observable } from "mobx"
 
-type tabType = "" | "write" | "setting";
-export interface tabInterface {
-  currentTab: tabType;
-  setCurrentTab: (tab: tabType) => void
+type TabType = "" | "write" | "setting";
+export interface TabInterface {
+  currentTab: TabType;
+  setCurrentTab: (tab: TabType) => void
 
 }
-const tab = observable(<tabInterface>{
+const tab = observable(<TabInterface>{
   currentTab: window.location.pathname.split("/")[2] || "",
-  setCurrentTab(tab: tabType) {
+  setCurrentTab(tab: TabType) {
     this.currentTab = tab
   },
 })

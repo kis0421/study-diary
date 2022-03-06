@@ -1,20 +1,20 @@
 import { observable } from "mobx"
 
-interface writeFromInterface {
+interface WriteFromInterface {
   title: string;
   link: string;
   content: string;
   keywordString: string;
   keywords: Set<string>
 }
-export interface writeDiaryInterface {
-  writeForm: writeFromInterface;
+export interface WriteDiaryInterface {
+  writeForm: WriteFromInterface;
   addKeyword: (keywrod: string) => void;
   deleteKeyword: (keywrod: string) => void;
   handleChange: (name: string, value: any) => void;
 }
 
-const writeDiary = observable(<writeDiaryInterface>{
+const writeDiary = observable(<WriteDiaryInterface>{
   writeForm: {
     title: "",
     link: "",
