@@ -12,7 +12,6 @@ interface Value {
   diaryInfo: DiaryInfoInterFace
   tab: TabInterface,
   writeDiary: WriteDiaryInterface,
-  log: (data: any) => void;
 }
 
 const context = createContext<Value>({} as any);
@@ -25,7 +24,6 @@ export function Provider(props: { children: ReactNode }) {
       tab,
       writeDiary,
       diaryInfo,
-      log: (data) => global.console.log(data),
     }}>
     {props.children}
   </context.Provider>;

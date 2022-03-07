@@ -25,8 +25,6 @@ const Write = () => {
   const { alert } = useContext(UIContext);
 
   const submitDiary = async () => {
-    console.log(siteInfo.currentSiteInfo);
-    console.log(writeDiary.writeForm);
     // FIXME: 마지막 , 추가되는거 없애야함
     const keywordString = [...Array.from(writeDiary.writeForm.keywords), writeDiary.writeForm.keywordString].join(",");
 
