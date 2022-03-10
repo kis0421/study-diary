@@ -26,7 +26,7 @@ const KeywordInputField = (props: { setter: any }) => {
         outline: "none"
       }}
       onKeyPress={(e) => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && keyword.trim() !== "") {
           setKeywords([...keywords, keyword])
           setKeyword("")
         }
