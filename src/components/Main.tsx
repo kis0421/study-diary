@@ -17,7 +17,7 @@ const Main = () => {
       <div>
         <button onClick={async () => await check()}>체크</button>
       </div>
-      <KeywordInputField setter="ss" />
+      <KeywordInputField setter={(keywords) => console.log(keywords.join())} />
     </section>
   )
 }
