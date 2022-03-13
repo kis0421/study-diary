@@ -109,3 +109,7 @@ export const getDiaryDetail = async (siteIdx: number, idx: number) => {
   });
   return data.diary;
 }
+
+export const deletePostOne = async (siteIdx: number, idx: number) => {
+  // TODO:
+}
