@@ -7,7 +7,9 @@ export interface TabInterface {
 
 }
 const tab = observable(<TabInterface>{
-  currentTab: window.location.pathname.split("/")[2] || "",
+  currentTab: ["write", "setting"].includes(window.location.pathname.split("/")[2])
+    ? window.location.pathname.split("/")[2]
+    : "",
   setCurrentTab(tab: TabType) {
     this.currentTab = tab
   },
