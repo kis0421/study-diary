@@ -1,6 +1,10 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const path = require("path");
+const webpack = require("webpack");
+const dotenv = require("dotenv");
+dotenv.config();
+
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -25,7 +29,11 @@ const config = {
     }),
 
     new MiniCssExtractPlugin(),
-
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify({
+        REACT_APP_SECRETKEY: process.env.REACT_APP_SECRETKEY
+      })
+    })
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],

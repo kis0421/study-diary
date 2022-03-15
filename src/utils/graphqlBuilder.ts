@@ -2,7 +2,7 @@ import axios from "axios";
 // TODO: graphql request를 axios 하나만 사용하는게 맞나 ?d
 
 const endPoint = "https://study-diary.hasura.app/v1/graphql";
-const secretKey = process?.env?.REACT_APP_SECRETKEY || "";
+const secretKey = process.env?.REACT_APP_SECRETKEY || "";
 
 interface RequestBuilder {
   method: "POST" | "GET";
