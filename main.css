@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+}
+
+.app > section {
+    flex: 1;
+    overflow: auto;
+}
+
+#keywordInput {
+    display: flex;
+    flex-wrap: wrap;
+}
+#keywordInput > input[type="text"]{
+    font-size: 15px;
+    color: rgb(85, 85, 85);
+    height: 18px;
+    border: none;
+    outline: none;
+    padding-top: 5px;
+}
+#keywordInput > div{
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 4px 10px;
+    font-size: 15px;
+    display: inline-flex;
+    cursor: pointer;
+    margin-right: 4px;
+}
