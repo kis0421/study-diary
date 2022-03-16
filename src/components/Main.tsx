@@ -1,23 +1,24 @@
 import React, { useEffect } from "react"
 import { getSiteInfo } from "../utils/graphqlBuilder"
+import { TextField, InputAdornment } from "@mui/material"
 import KeywordInputField from "./KeywordInputField"
+import { useSwipeable } from 'react-swipeable';
 
 const Main = () => {
 
-  useEffect(() => {
-
-  }, [])
-
-  const check = async () => {
-    const isRegisterdSiteId = await getSiteInfo("kimminkyud");
-    console.log(isRegisterdSiteId);
+  const check = async (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const isRegisterdSiteId = await getSiteInfo(e.target.value);
+    // console.log(isRegisterdSiteId);
   }
+
   return (
-    <section style={{ position: "fixed", width: "100%", height: "100%" }}>
-      <div>
-        <button onClick={async () => await check()}>체크</button>
-      </div>
-      <KeywordInputField setter={(keywords) => console.log(keywords.join())} />
+    <section style={{ position: "fixed", width: "100%", height: "100%", }}>
+      <TextField
+        onChange={check}
+        InputProps={{
+          endAdornment: <InputAdornment position="start">kg</InputAdornment>,
+        }}
+      />
     </section>
   )
 }
