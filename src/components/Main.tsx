@@ -1,9 +1,14 @@
 import React, { useEffect } from "react"
+import { observer } from "mobx-react-lite";
+import { TextField, InputAdornment, Button, CircularProgress } from "@mui/material"
+import {
+  Check as CheckIcon,
+  ErrorOutline as ErrorOutlineIcon
+} from "@mui/icons-material";
+
 import useStore from "../useStore";
 import { getSiteInfo } from "../utils/graphqlBuilder"
-import { TextField, InputAdornment, Button } from "@mui/material"
 import { CreateSiteInterface } from "../stores/siteInfoForm"
-import { observer } from "mobx-react-lite";
 
 const Main = () => {
   const { siteInfoForm } = useStore();
@@ -26,7 +31,15 @@ const Main = () => {
     {
       name: "siteId", label: "아이디", helperText: "다이어리(사이트) 아이디를 입력해주세요.", type: "text",
       InputProps: {
-        endAdornment: <InputAdornment position="start">kg</InputAdornment>,
+        endAdornment: <InputAdornment position="start">{
+          siteInfoForm.form.siteIdCheckStatus === "wait"
+            ? ""
+            : siteInfoForm.form.siteIdCheckStatus === "sending"
+              ? <CircularProgress size={22} />
+              : siteInfoForm.form.siteIdCheckStatus === "error"
+                ? <ErrorOutlineIcon color="primary" />
+                : <CheckIcon style={{ color: "green" }} />
+        }</InputAdornment>,
       },
     },
     { name: "sitePassword", label: "비밀번호", type: "password" },
@@ -49,8 +62,8 @@ const Main = () => {
             InputProps={field.InputProps}
             value={siteInfoForm.form[fieldName]}
             onChange={(e) => {
-              siteInfoForm.handleChange(e.target.name, e.target.value)}
-            }
+              siteInfoForm.handleChange(e.target.name, e.target.value)
+            }}
             style={{ width: "80%", marginBottom: !field.helperText ? "20px" : 0 }} />
         })}
 
