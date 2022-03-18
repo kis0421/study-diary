@@ -67,7 +67,6 @@ const Main = () => {
   const { siteInfoForm } = useStore();
   const checkSiteId = useCallback(debounce(async () => {
     if (siteInfoForm.form["siteId"].trim()) {
-      siteInfoForm.handleChange("siteIdCheckStatus", "sending");
       const isRegisterdSiteId = await getSiteInfo(siteInfoForm.form["siteId"]);
       siteInfoForm.handleChange("siteIdCheckStatus", isRegisterdSiteId.length ? "error" : "done");
     } else {
@@ -94,6 +93,7 @@ const Main = () => {
             onChange={(e) => {
               siteInfoForm.handleChange(e.target.name, e.target.value)
               if (e.target.name === "siteId") {
+                siteInfoForm.handleChange("siteIdCheckStatus", "sending");
                 checkSiteId();
               }
             }}
