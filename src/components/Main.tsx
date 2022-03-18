@@ -21,9 +21,16 @@ interface TextFiledsInterface {
   }
 }
 const textFields: TextFiledsInterface[] = [
-  { name: "siteName", label: "다이어리 이름", type: "text" },
   {
-    name: "siteId", label: "아이디", helperText: "다이어리(사이트) 아이디를 입력해주세요.", type: "text",
+    name: "siteName",
+    label: "다이어리 이름",
+    type: "text"
+  },
+  {
+    name: "siteId",
+    label: "아이디",
+    type: "text",
+    helperText: "다이어리(사이트) 아이디를 입력해주세요.",
     InputProps: (status) => ({
       endAdornment: < InputAdornment position="start" > {
         status === "done"
@@ -36,8 +43,16 @@ const textFields: TextFiledsInterface[] = [
       </InputAdornment >,
     }),
   },
-  { name: "sitePassword", label: "비밀번호", type: "password" },
-  { name: "sitePasswordConfirm", label: "비밀번호 확인", type: "password" },
+  {
+    name: "sitePassword",
+    label: "비밀번호",
+    type: "password"
+  },
+  {
+    name: "sitePasswordConfirm",
+    label: "비밀번호 확인",
+    type: "password"
+  },
 ];
 
 
