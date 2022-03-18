@@ -75,7 +75,7 @@ const Main = () => {
   }, 1000), []);
 
   return (
-    <section style={{ position: "fixed", width: "100%", height: "100%", }}>
+    <section className="mainWrap" style={{ position: "fixed", width: "100%", height: "100%", }}>
       <h1 style={{ textAlign: "center", margin: "1.5em 0" }}>다이어리 만들기</h1>
 
       <article style={{ textAlign: "center" }}>

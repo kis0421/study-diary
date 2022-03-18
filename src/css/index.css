@@ -2,9 +2,10 @@
 * {
     margin: 0;
     padding: 0;
+}
+.mainWrap{
     font-family: 'Nanum Gothic Coding', monospace;
 }
-
 .app {
     flex: 1;
     flex-direction: column;
