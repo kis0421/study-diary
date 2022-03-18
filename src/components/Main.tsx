@@ -103,12 +103,20 @@ const Main = () => {
         <Button
           variant="contained"
           style={{ width: "80%", height: "48px" }}
+          disabled={
+            !siteInfoForm.form["siteId"].trim()
+            || !siteInfoForm.form["siteName"].trim()
+            || !siteInfoForm.form["sitePassword"].trim()
+            || !siteInfoForm.form["sitePasswordConfirm"].trim()
+            || siteInfoForm.form["sitePasswordConfirm"] !== siteInfoForm.form["sitePassword"]
+            || siteInfoForm.form["siteIdCheckStatus"] !== "done"
+          }
           onClick={() => {
             console.log("dd")
           }}>생성</Button>
 
       </article>
-    </section>
+    </section >
   )
 }
 
