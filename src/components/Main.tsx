@@ -32,14 +32,14 @@ const Main = () => {
       name: "siteId", label: "아이디", helperText: "다이어리(사이트) 아이디를 입력해주세요.", type: "text",
       InputProps: {
         endAdornment: <InputAdornment position="start">{
-          siteInfoForm.form.siteIdCheckStatus === "wait"
-            ? ""
+          siteInfoForm.form.siteIdCheckStatus === "done"
+            ? <CheckIcon style={{ color: "green" }} />
             : siteInfoForm.form.siteIdCheckStatus === "sending"
               ? <CircularProgress size={22} />
               : siteInfoForm.form.siteIdCheckStatus === "error"
                 ? <ErrorOutlineIcon color="primary" />
-                : <CheckIcon style={{ color: "green" }} />
-        }</InputAdornment>,
+                : ""}
+        </InputAdornment>,
       },
     },
     { name: "sitePassword", label: "비밀번호", type: "password" },
