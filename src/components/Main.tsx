@@ -1,10 +1,11 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useCallback } from "react"
 import { observer } from "mobx-react-lite";
 import { TextField, InputAdornment, Button, CircularProgress } from "@mui/material"
 import {
   Check as CheckIcon,
   ErrorOutline as ErrorOutlineIcon
 } from "@mui/icons-material";
+import { debounce } from "lodash";
 
 import useStore from "../useStore";
 import { getSiteInfo } from "../utils/graphqlBuilder"
@@ -12,9 +13,15 @@ import { CreateSiteInterface } from "../stores/siteInfoForm"
 
 const Main = () => {
   const { siteInfoForm } = useStore();
-  const check = async (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    const isRegisterdSiteId = await getSiteInfo(e.target.value);
-  }
+  const checkSiteId = useCallback(debounce(async () => {
+    if (siteInfoForm.form["siteId"].trim()) {
+      siteInfoForm.handleChange("siteIdCheckStatus", "sending");
+      const isRegisterdSiteId = await getSiteInfo(siteInfoForm.form["siteId"]);
+      siteInfoForm.handleChange("siteIdCheckStatus", isRegisterdSiteId.length ? "error" : "done");
+    } else {
+      siteInfoForm.handleChange("siteIdCheckStatus", "wait");
+    }
+  }, 1000), []);
 
   interface TextFiledsInterface {
     name: keyof CreateSiteInterface["form"];
@@ -63,6 +70,9 @@ const Main = () => {
             value={siteInfoForm.form[fieldName]}
             onChange={(e) => {
               siteInfoForm.handleChange(e.target.name, e.target.value)
+              if (e.target.name === "siteId") {
+                checkSiteId();
+              }
             }}
             style={{ width: "80%", marginBottom: !field.helperText ? "20px" : 0 }} />
         })}
