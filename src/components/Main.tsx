@@ -11,6 +11,36 @@ import useStore from "../useStore";
 import { getSiteInfo } from "../utils/graphqlBuilder"
 import { CreateSiteInterface } from "../stores/siteInfoForm"
 
+interface TextFiledsInterface {
+  name: keyof CreateSiteInterface["form"];
+  label: string;
+  type: "text" | "password"
+  helperText?: string
+  InputProps?: (status: CreateSiteInterface["form"]["siteIdCheckStatus"]) => {
+    endAdornment: JSX.Element;
+  }
+}
+const textFields: TextFiledsInterface[] = [
+  { name: "siteName", label: "다이어리 이름", type: "text" },
+  {
+    name: "siteId", label: "아이디", helperText: "다이어리(사이트) 아이디를 입력해주세요.", type: "text",
+    InputProps: (status) => ({
+      endAdornment: < InputAdornment position="start" > {
+        status === "done"
+          ? <CheckIcon style={{ color: "green" }} />
+          : status === "sending"
+            ? <CircularProgress size={22} />
+            : status === "error"
+              ? <ErrorOutlineIcon color="primary" />
+              : ""}
+      </InputAdornment >,
+    }),
+  },
+  { name: "sitePassword", label: "비밀번호", type: "password" },
+  { name: "sitePasswordConfirm", label: "비밀번호 확인", type: "password" },
+];
+
+
 const Main = () => {
   const { siteInfoForm } = useStore();
   const checkSiteId = useCallback(debounce(async () => {
@@ -22,36 +52,6 @@ const Main = () => {
       siteInfoForm.handleChange("siteIdCheckStatus", "wait");
     }
   }, 1000), []);
-
-  interface TextFiledsInterface {
-    name: keyof CreateSiteInterface["form"];
-    label: string;
-    type: "text" | "password"
-    helperText?: string
-    InputProps?: {
-      endAdornment: JSX.Element;
-    }
-  }
-
-  const textFields: TextFiledsInterface[] = [
-    { name: "siteName", label: "다이어리 이름", type: "text" },
-    {
-      name: "siteId", label: "아이디", helperText: "다이어리(사이트) 아이디를 입력해주세요.", type: "text",
-      InputProps: {
-        endAdornment: <InputAdornment position="start">{
-          siteInfoForm.form.siteIdCheckStatus === "done"
-            ? <CheckIcon style={{ color: "green" }} />
-            : siteInfoForm.form.siteIdCheckStatus === "sending"
-              ? <CircularProgress size={22} />
-              : siteInfoForm.form.siteIdCheckStatus === "error"
-                ? <ErrorOutlineIcon color="primary" />
-                : ""}
-        </InputAdornment>,
-      },
-    },
-    { name: "sitePassword", label: "비밀번호", type: "password" },
-    { name: "sitePasswordConfirm", label: "비밀번호 확인", type: "password" },
-  ];
 
   return (
     <section style={{ position: "fixed", width: "100%", height: "100%", }}>
@@ -66,7 +66,7 @@ const Main = () => {
             label={field.label}
             helperText={field.helperText}
             type={field.type}
-            InputProps={field.InputProps}
+            InputProps={field.InputProps && field.InputProps(siteInfoForm.form["siteIdCheckStatus"])}
             value={siteInfoForm.form[fieldName]}
             onChange={(e) => {
               siteInfoForm.handleChange(e.target.name, e.target.value)
