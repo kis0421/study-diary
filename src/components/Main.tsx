@@ -14,46 +14,53 @@ import { CreateSiteInterface } from "../stores/siteInfoForm"
 interface TextFiledsInterface {
   name: keyof CreateSiteInterface["form"];
   label: string;
-  type: "text" | "password"
+  type: "text" | "password";
   helperText?: string
-  InputProps?: (status: CreateSiteInterface["form"]["siteIdCheckStatus"]) => {
+  InputProps?: {
     endAdornment: JSX.Element;
   }
+  error?: boolean
 }
-const textFields: TextFiledsInterface[] = [
-  {
-    name: "siteName",
-    label: "다이어리 이름",
-    type: "text"
-  },
-  {
-    name: "siteId",
-    label: "아이디",
-    type: "text",
-    helperText: "다이어리(사이트) 아이디를 입력해주세요.",
-    InputProps: (status) => ({
-      endAdornment: < InputAdornment position="start" > {
-        status === "done"
-          ? <CheckIcon style={{ color: "green" }} />
-          : status === "sending"
-            ? <CircularProgress size={22} />
-            : status === "error"
-              ? <ErrorOutlineIcon color="primary" />
-              : ""}
-      </InputAdornment >,
-    }),
-  },
-  {
-    name: "sitePassword",
-    label: "비밀번호",
-    type: "password"
-  },
-  {
-    name: "sitePasswordConfirm",
-    label: "비밀번호 확인",
-    type: "password"
-  },
-];
+const getTextFields: (form: CreateSiteInterface["form"]) => TextFiledsInterface[] = (form) => {
+  return [
+    {
+      name: "siteName",
+      label: "다이어리 이름",
+      type: "text"
+    },
+    {
+      name: "siteId",
+      label: "아이디",
+      type: "text",
+      error: form["siteIdCheckStatus"] === "error",
+      helperText: "다이어리(사이트) 아이디를 입력해주세요.",
+      InputProps: {
+        endAdornment: < InputAdornment position="start" > {
+          form["siteIdCheckStatus"] === "done"
+            ? <CheckIcon style={{ color: "green" }} />
+            : form["siteIdCheckStatus"] === "sending"
+              ? <CircularProgress size={22} />
+              : form["siteIdCheckStatus"] === "error"
+                ? <ErrorOutlineIcon color="primary" />
+                : ""}
+        </InputAdornment >,
+      }
+    },
+    {
+      name: "sitePassword",
+      label: "비밀번호",
+      type: "password"
+    },
+    {
+      name: "sitePasswordConfirm",
+      label: "비밀번호 확인",
+      type: "password",
+      helperText: Boolean(form["sitePasswordConfirm"]) && (form["sitePassword"] !== form["sitePasswordConfirm"])
+        && "비밀번호가 일치하지 않습니다.",
+      error: Boolean(form["sitePasswordConfirm"]) && (form["sitePassword"] !== form["sitePasswordConfirm"])
+    },
+  ]
+};
 
 
 const Main = () => {
@@ -73,7 +80,7 @@ const Main = () => {
       <h1 style={{ textAlign: "center", margin: "1.5em 0" }}>다이어리 만들기</h1>
 
       <article style={{ textAlign: "center" }}>
-        {textFields.map((field) => {
+        {getTextFields(siteInfoForm.form).map((field) => {
           const fieldName = field.name;
           return <TextField
             key={field.label}
@@ -81,7 +88,8 @@ const Main = () => {
             label={field.label}
             helperText={field.helperText}
             type={field.type}
-            InputProps={field.InputProps && field.InputProps(siteInfoForm.form["siteIdCheckStatus"])}
+            error={field.error}
+            InputProps={field.InputProps}
             value={siteInfoForm.form[fieldName]}
             onChange={(e) => {
               siteInfoForm.handleChange(e.target.name, e.target.value)
@@ -95,7 +103,9 @@ const Main = () => {
         <Button
           variant="contained"
           style={{ width: "80%", height: "48px" }}
-          onClick={() => console.log("dd")}>생성</Button>
+          onClick={() => {
+            console.log("dd")
+          }}>생성</Button>
 
       </article>
     </section>
