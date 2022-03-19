@@ -111,5 +111,21 @@ export const getDiaryDetail = async (siteIdx: number, idx: number) => {
 }
 
 export const deletePostOne = async (siteIdx: number, idx: number) => {
-  // TODO:
+  const { data } = await requestBuilder({
+    method: "POST",
+    query: `mutation deleteDiaryOne($siteIdx: Int, $idx: Int) {
+      delete_diary(where: {siteIdx: {_eq: $siteIdx}, _and: {idx: {_eq: $idx}}}) {
+        affected_rows
+      }
+    }`,
+    variables: {
+      siteIdx,
+      idx,
+    }
+  });
+  return Boolean(data.delete_diary.affected_rows);
+}
+
+export const createDiary = async () => {
+
 }
