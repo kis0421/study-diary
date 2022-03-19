@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { TextField, Rating, Switch, FormControlLabel, Button, InputAdornment } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { observer } from "mobx-react-lite";
 
 import StoreContext from "../context/StoreContext";
@@ -23,12 +23,13 @@ const Write = () => {
   const params = useParams();
   const { writeDiary, siteInfo } = useContext(StoreContext);
   const { alert } = useContext(UIContext);
+  const navigate = useNavigate();
 
   const submitDiary = async () => {
     // FIXME: 마지막 , 추가되는거 없애야함
     const keywordString = [...Array.from(writeDiary.writeForm.keywords), writeDiary.writeForm.keywordString].join(",");
 
-    await insertDiaryOne({
+    const resultIdx = await insertDiaryOne({
       title: writeDiary.writeForm.title,
       content: writeDiary.writeForm.content,
       link: writeDiary.writeForm.link,
@@ -36,9 +37,17 @@ const Write = () => {
       userId: 1,
       keywords: keywordString || null,
     })
-    alert({
-      message: "작성 완료"
-    })
+    if (resultIdx) {
+      alert({
+        message: "작성 완료",
+        action: () => navigate(`/${siteInfo.currentSiteInfo.siteId}/${resultIdx}`)
+      })
+    } else {
+      alert({
+        message: "작성에 실패했습니다."
+      })
+    }
+
   };
 
   return (<div style={{ padding: "16px" }}>
