@@ -50,22 +50,18 @@ export const insertDiaryOne = async (writeData: {
   content: string,
   keywords: string
 }) => {
-  await requestBuilder({
+  const { data } = await requestBuilder({
     method: "POST",
     query: `mutation MyMutation($object: diary_insert_input!) {
         insert_diary_one(object: $object){
-          title,
-          siteIdx,
-          userId,
-          link,
-          content,
-          keywords,
+          idx
         }
       }`,
     variables: {
       object: writeData
     }
   });
+  return data?.insert_diary_one?.idx
 }
 
 export const getDiaryList = async (siteIdx: number) => {
