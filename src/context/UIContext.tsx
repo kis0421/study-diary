@@ -63,7 +63,12 @@ export function Provider(props: { children: ReactNode }) {
             <Button onClick={closeDialog} color="primary">취소</Button>
           </>}
           {universalUI.info.type === "alert" && <>
-            <Button onClick={closeDialog} color="primary">확인</Button>
+            <Button onClick={() => {
+              if (universalUI.info.action) {
+                universalUI.info.action();
+              }
+              closeDialog()
+            }} color="primary">확인</Button>
           </>}
         </DialogActions>
       </Dialog>
