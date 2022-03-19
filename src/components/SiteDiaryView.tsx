@@ -3,7 +3,7 @@ import { useNavigate, useParams, Link } from "react-router-dom"
 import { observer } from "mobx-react-lite";
 import { Backdrop, CircularProgress, Button } from "@mui/material"
 
-import { getDiaryDetail } from "../utils/graphqlBuilder"
+import { getDiaryDetail, deletePostOne } from "../utils/graphqlBuilder"
 import UIContext from "../context/UIContext";
 import StoreContext from "../context/StoreContext";
 
@@ -45,7 +45,14 @@ const SiteDiaryView = () => {
             style={{ position: "absolute", left: "0" }}>뒤로</Button>
           <span>{diaryInfo.diaryDetail?.title}</span>
           <Button
-            onClick={() => confirm({ title: "알림", message: "삭제 하시겠습니까?"})}
+            onClick={() => confirm({
+              title: "알림", message: "삭제 하시겠습니까?", action: async () => {
+                const isDeleteSucceed = await deletePostOne(siteInfo.currentSiteInfo.idx, parseInt(diaryIdx, 10));
+                if (isDeleteSucceed) {
+                  navigate(`/${siteInfo.currentSiteInfo.siteId}/`)
+                }
+              }
+            })}
             style={{ position: "absolute", right: "0" }}>삭제</Button>
         </header>
         <article style={{
