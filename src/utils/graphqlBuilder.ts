@@ -122,6 +122,19 @@ export const deletePostOne = async (siteIdx: number, idx: number) => {
   return Boolean(data.delete_diary.affected_rows);
 }
 
-export const createDiary = async () => {
+export const createDiary = async (siteId: string, siteName: string, sitePassword: string) => {
+  const { data } = await requestBuilder({
+    method: "POST",
+    query: `mutation createDiary($siteId: String, $siteName: String, $sitePassword: String) {
+      insert_siteInfo_one(object: {siteName: $siteName, sitePassword: $sitePassword, siteId: $siteId}) {
+        siteId
+      }
+    }`,
+    variables: {
+      siteId,
+      siteName,
+      sitePassword,
+    }
+  });
 
 }
