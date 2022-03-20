@@ -127,7 +127,9 @@ export const createDiary = async (siteId: string, siteName: string, sitePassword
     method: "POST",
     query: `mutation createDiary($siteId: String, $siteName: String, $sitePassword: String) {
       insert_siteInfo_one(object: {siteName: $siteName, sitePassword: $sitePassword, siteId: $siteId}) {
-        siteId
+        idx,
+        siteId,
+        siteName
       }
     }`,
     variables: {
@@ -136,5 +138,5 @@ export const createDiary = async (siteId: string, siteName: string, sitePassword
       sitePassword,
     }
   });
-  return data?.insert_siteInfo_one?.siteId
+  return data?.insert_siteInfo_one
 }
