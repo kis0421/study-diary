@@ -136,5 +136,5 @@ export const createDiary = async (siteId: string, siteName: string, sitePassword
       sitePassword,
     }
   });
-
+  return data?.insert_siteInfo_one?.siteId
 }
