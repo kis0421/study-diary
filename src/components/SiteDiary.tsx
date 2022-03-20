@@ -12,7 +12,7 @@ const SiteDiary = () => {
   const { siteInfo, diaryInfo } = useContext(StoreContext);
   const navigate = useNavigate();
   const pathName = (useLocation()).pathname;
-  
+
   useEffect(() => {
     if (siteInfo.currentSiteInfo) {
       (async () => {
@@ -32,7 +32,7 @@ const SiteDiary = () => {
       </Backdrop>
       : <section style={{ position: "fixed", width: "calc(100% - 16px)", height: "calc(100% - 64px)", padding: "8px" }}>
         <header style={{
-          textAlign:"center",
+          textAlign: "center",
           fontWeight: "bold",
           fontSize: "1.5em",
           paddingBottom: "8px",
@@ -43,34 +43,36 @@ const SiteDiary = () => {
           paddingTop: "8px",
           overflowY: "auto"
         }}>
-          {(diaryInfo?.diaryList || []).map((i, index) => (
-            <div
-              key={i.idx}
-              style={{
-                float: "left",
-                display: "inline-block",
-                width: "calc(50% - 12px)",
-                marginRight: index % 2 === 0 ? "20px" : "0",
-                marginLeft: index % 2 === 0 ? "2px" : "0"
-                ,
-              }}>
-              <Paper
-                onClick={() => navigate(`${pathName}${pathName[pathName.length - 1] !== "/" ? "/" : ""}${i.idx}`)}
+          {!diaryInfo?.diaryList.length
+            ? <span style={{color:"#7b7b7b"}}>작성된 게시글이 없습니다.</span>
+            : diaryInfo?.diaryList.map((i, index) => (
+              <div
+                key={i.idx}
                 style={{
-                  minHeight: "250px",
-                  marginBottom: "8px",
-                  wordBreak: "break-all",
-                  padding: "6px",
-                  fontSize: "0.75em"
-                }}
-                elevation={3}>{i.content}</Paper>
-              <div style={{ marginBottom: "42px", textAlign: "center" }}>
-                <div>{i.title}</div>
-                <div style={{ fontSize: "0.8em", color: "#999" }}>{i.registerDate.substring(0, 10)}</div>
+                  float: "left",
+                  display: "inline-block",
+                  width: "calc(50% - 12px)",
+                  marginRight: index % 2 === 0 ? "20px" : "0",
+                  marginLeft: index % 2 === 0 ? "2px" : "0"
+                  ,
+                }}>
+                <Paper
+                  onClick={() => navigate(`${pathName}${pathName[pathName.length - 1] !== "/" ? "/" : ""}${i.idx}`)}
+                  style={{
+                    minHeight: "250px",
+                    marginBottom: "8px",
+                    wordBreak: "break-all",
+                    padding: "6px",
+                    fontSize: "0.75em"
+                  }}
+                  elevation={3}>{i.content}</Paper>
+                <div style={{ marginBottom: "42px", textAlign: "center" }}>
+                  <div>{i.title}</div>
+                  <div style={{ fontSize: "0.8em", color: "#999" }}>{i.registerDate.substring(0, 10)}</div>
+                </div>
               </div>
-            </div>
 
-          ))}
+            ))}
         </article>
       </section>}
   </>
