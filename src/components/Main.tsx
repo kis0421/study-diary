@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback } from "react"
+import { useNavigate, } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { TextField, InputAdornment, Button, CircularProgress } from "@mui/material"
 import {
@@ -8,7 +9,7 @@ import {
 import { debounce } from "lodash";
 
 import useStore from "../useStore";
-import { getSiteInfo } from "../utils/graphqlBuilder"
+import { getSiteInfo, createDiary } from "../utils/graphqlBuilder"
 import { CreateSiteInterface } from "../stores/siteInfoForm"
 
 interface TextFiledsInterface {
@@ -64,7 +65,9 @@ const getTextFields: (form: CreateSiteInterface["form"]) => TextFiledsInterface[
 
 
 const Main = () => {
-  const { siteInfoForm } = useStore();
+  const { siteInfoForm, siteInfo } = useStore();
+  const navigate = useNavigate();
+
   const checkSiteId = useCallback(debounce(async () => {
     if (siteInfoForm.form["siteId"].trim()) {
       const isRegisterdSiteId = await getSiteInfo(siteInfoForm.form["siteId"]);
@@ -111,8 +114,12 @@ const Main = () => {
             || siteInfoForm.form["sitePasswordConfirm"] !== siteInfoForm.form["sitePassword"]
             || siteInfoForm.form["siteIdCheckStatus"] !== "done"
           }
-          onClick={() => {
-            console.log("dd")
+          onClick={async () => {
+            const result = await createDiary(siteInfoForm.form["siteId"], siteInfoForm.form["siteName"], siteInfoForm.form["sitePassword"])
+            if(result){
+              siteInfo.setCurrentSiteInfo(result);
+              navigate(`/${result.siteId}`)
+            }
           }}>생성</Button>
 
       </article>
