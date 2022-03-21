@@ -22,20 +22,20 @@ import packageJson from "../..//package.json";
 const Setting = () => {
   const { alert } = useContext(UIContext);
 
-  const menuGroups: { title: string, icon: JSX.Element, onClickEvent?: () => void }[][] = [
+  const menuGroups: { title: string, icon: JSX.Element, hide: boolean, onClickEvent?: () => void }[][] = [
     [
-      { title: "공지사항", icon: <CampaignIcon />, onClickEvent: () => alert({ message: "공지사항이 없습니다." }) },
-      { title: "버전정보", icon: <InfoIcon />, onClickEvent: () => alert({ message: packageJson.version }) },
+      { title: "공지사항", icon: <CampaignIcon />, hide: false, onClickEvent: () => alert({ message: "공지사항이 없습니다." }) },
+      { title: "버전정보", icon: <InfoIcon />, hide: false, onClickEvent: () => alert({ message: packageJson.version }) },
     ],
     [
-      { title: "공유하기", icon: <ShareIcon />, onClickEvent: () => console.log("") },
-      { title: "친구관리", icon: <PeopleIcon />, onClickEvent: () => console.log("") },
-      { title: "다이어리 꾸미기", icon: <CleaningIcon />, onClickEvent: () => console.log("") },
-      { title: "통계", icon: <EqualizerIcon />, onClickEvent: () => console.log("") },
-      { title: "저장됨", icon: <BookmarksIcon />, onClickEvent: () => console.log("") },
+      { title: "공유하기", icon: <ShareIcon />, hide: false, onClickEvent: () => console.log("") },
+      { title: "친구관리", icon: <PeopleIcon />, hide: false, onClickEvent: () => console.log("") },
+      { title: "다이어리 꾸미기", icon: <CleaningIcon />, hide: false, onClickEvent: () => console.log("") },
+      { title: "통계", icon: <EqualizerIcon />, hide: false, onClickEvent: () => console.log("") },
+      { title: "저장됨", icon: <BookmarksIcon />, hide: false, onClickEvent: () => console.log("") },
     ],
     [
-      { title: "고객센터 / 도움말", icon: <HelpIcon /> }
+      { title: "고객센터 / 도움말", icon: <HelpIcon />,hide: false, }
     ]
   ];
   return (
