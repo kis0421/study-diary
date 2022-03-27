@@ -63,7 +63,7 @@ const SiteDiaryView = () => {
             <Link
               to={diaryInfo.diaryDetail.link}> {diaryInfo.diaryDetail.link} </Link>
           </div>
-          <div>{diaryInfo.diaryDetail.content}</div>
+          <pre style={{ overflow: "auto" }}>{diaryInfo.diaryDetail.content}</pre>
         </article>
       </section>
     }
