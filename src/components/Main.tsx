@@ -1,7 +1,9 @@
+/** @jsx jsx */
 import React, { useEffect, useCallback } from "react"
 import { useNavigate, } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { TextField, InputAdornment, Button, CircularProgress } from "@mui/material"
+import { css, jsx } from '@emotion/react'
 import {
   Check as CheckIcon,
   ErrorOutline as ErrorOutlineIcon
@@ -22,6 +24,8 @@ interface TextFiledsInterface {
   }
   error?: boolean
 }
+const checkIconStyle = css`color:green`
+
 const getTextFields: (form: CreateSiteInterface["form"]) => TextFiledsInterface[] = (form) => {
   return [
     {
@@ -38,7 +42,7 @@ const getTextFields: (form: CreateSiteInterface["form"]) => TextFiledsInterface[
       InputProps: {
         endAdornment: < InputAdornment position="start" > {
           form["siteIdCheckStatus"] === "done"
-            ? <CheckIcon style={{ color: "green" }} />
+            ? <CheckIcon css={checkIconStyle} />
             : form["siteIdCheckStatus"] === "sending"
               ? <CircularProgress size={22} />
               : form["siteIdCheckStatus"] === "error"
@@ -116,7 +120,7 @@ const Main = () => {
           }
           onClick={async () => {
             const result = await createDiary(siteInfoForm.form["siteId"], siteInfoForm.form["siteName"], siteInfoForm.form["sitePassword"])
-            if(result){
+            if (result) {
               siteInfo.setCurrentSiteInfo(result);
               navigate(`/${result.siteId}`)
             }
